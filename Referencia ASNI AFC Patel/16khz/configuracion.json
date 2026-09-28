@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "sample_rate": 16000,
+  "seeds": [1729, 2718, 3141, 5772, 8119],
+  "conditions": ["simple", "reflections", "reverberant", "weak_onset", "noise40", "noise20", "no_return", "clipped", "nonfinite", "short160"],
+  "maximum_filter_length": 683,
+  "maximum_delay_samples": 1600,
+  "probe_seconds": 1.0,
+  "validation_seconds": 0.5,
+  "pre_onset_margin_samples": 32,
+  "rounding": "nearest integer, ties to even",
+  "tolerances": {"oracle": 1e-10, "cpp_solver": 1e-8, "identification": 1e-3, "noisy_prediction_db": 0.1, "delay_samples": 1, "replay": 1e-12}
+}

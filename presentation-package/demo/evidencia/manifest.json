@@ -1,0 +1,37 @@
+{
+  "afc_lab_version": "0.1.0",
+  "config": {
+    "block_sizes": [
+      64,
+      128,
+      256
+    ],
+    "duration_seconds": 8.0,
+    "gain_margin_db": 1.5,
+    "output_dir": "outputs/presentation-demo/raw",
+    "patel": {
+      "filter_length": 128,
+      "path_change_seconds": 4.0,
+      "probe_duration_ms": 100,
+      "probe_level_dbfs": -30.0,
+      "reactive": true,
+      "regularisation": 1e-05
+    },
+    "path": {
+      "decay": 0.018,
+      "direct_delay": 64,
+      "length": 512
+    },
+    "sample_rate": 48000,
+    "seed": 20260826,
+    "signal_kind": "voice_like",
+    "snr_db": 20.0
+  },
+  "derived": {
+    "estimated_fir_error": 0.04439935460686684,
+    "maximum_stable_gain": 1.3334641456604004,
+    "open_loop_gain": 1.1219702537167218,
+    "samples": 384000
+  },
+  "schema_version": 1
+}

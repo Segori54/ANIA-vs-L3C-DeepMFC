@@ -1,0 +1,7 @@
+torch>=2.3
+onnx>=1.16
+onnxruntime>=1.18
+PyYAML>=6.0
+soundfile>=0.12
+pystoi>=0.4
+pesq>=0.0.4

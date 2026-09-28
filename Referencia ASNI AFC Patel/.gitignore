@@ -1,0 +1,12 @@
+build/
+__pycache__/
+*.pyc
+16khz/sesiones_reales/
+48khz/sesiones_reales/
+16khz/capturas/
+16khz/modelos/
+16khz/resultados/
+48khz/capturas/
+48khz/modelos/
+48khz/resultados/
+resumen_comparacion/audit_*/

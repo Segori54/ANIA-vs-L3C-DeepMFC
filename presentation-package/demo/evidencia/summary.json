@@ -1,0 +1,43 @@
+[
+  {
+    "clipped_samples": 0.0,
+    "delta_snr_db": -6.264380303377948e-08,
+    "elapsed_seconds": 1.8989937000005739,
+    "erle_db": -6.129098881308506e-08,
+    "first_howling_detection_ms": 64.0,
+    "howling_episodes": 16.0,
+    "lsd_db": 2.697198463150657,
+    "method": "bypass",
+    "rtf": 0.23737421250007174,
+    "si_sdr_db": 15.06909966092519,
+    "snr_db": 15.197605550758546
+  },
+  {
+    "clipped_samples": 0.0,
+    "delta_snr_db": 7.853720079396226,
+    "elapsed_seconds": 2.066523999994388,
+    "erle_db": 7.853720088504687,
+    "first_howling_detection_ms": 64.0,
+    "howling_episodes": 16.0,
+    "lsd_db": 0.9131843661676361,
+    "method": "patel_manual",
+    "rtf": 0.2583154999992985,
+    "si_sdr_db": 24.764477673609512,
+    "snr_db": 24.318481384079004
+  },
+  {
+    "clipped_samples": 0.0,
+    "delta_snr_db": 7.294882967629546,
+    "detection_ms": 64.0,
+    "elapsed_seconds": 2.0275572999962606,
+    "erle_db": 7.294882963720354,
+    "first_howling_detection_ms": 64.0,
+    "howling_episodes": 16.0,
+    "lsd_db": 1.2059608900999894,
+    "method": "patel_reactive",
+    "recovery_ms": 164.0,
+    "rtf": 0.25344466249953257,
+    "si_sdr_db": 17.475726570240578,
+    "snr_db": 17.469052411213745
+  }
+]

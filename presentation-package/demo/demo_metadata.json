@@ -1,0 +1,14 @@
+{
+  "purpose": "Muestra demostrativa para presentaciones; excluida de entrenamiento.",
+  "signal": "Señal sintética determinista tipo voz (voice_like).",
+  "normalisation": "RMS individual a -20 dBFS, techo de pico -1 dBFS y fundidos de 20 ms.",
+  "interpretation": "Resultados preliminares en simulación; no constituyen la campaña final.",
+  "sample_rate_hz": 48000,
+  "seed": 20260826,
+  "playback_order": [
+    "01_objetivo.wav",
+    "02_sin_procesamiento.wav",
+    "03_patel_calibracion_manual.wav",
+    "04_patel_cambio_de_camino.wav"
+  ]
+}

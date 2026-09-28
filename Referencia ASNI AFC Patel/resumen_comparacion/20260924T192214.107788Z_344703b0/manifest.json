@@ -1,0 +1,142 @@
+{
+  "schema_version": 1,
+  "campaigns": {
+    "16000": {
+      "schema_version": 1,
+      "run_id": "20260924T192127.192421Z_ed872dd5",
+      "status": "completed",
+      "config": {
+        "schema_version": 1,
+        "sample_rate": 16000,
+        "seeds": [
+          1729,
+          2718,
+          3141,
+          5772,
+          8119
+        ],
+        "conditions": [
+          "simple",
+          "reflections",
+          "reverberant",
+          "weak_onset",
+          "noise40",
+          "noise20",
+          "no_return",
+          "clipped",
+          "nonfinite",
+          "short160"
+        ],
+        "maximum_filter_length": 683,
+        "maximum_delay_samples": 1600,
+        "probe_seconds": 1.0,
+        "validation_seconds": 0.5,
+        "pre_onset_margin_samples": 32,
+        "rounding": "nearest integer, ties to even",
+        "tolerances": {
+          "oracle": 1e-10,
+          "cpp_solver": 1e-08,
+          "identification": 0.001,
+          "noisy_prediction_db": 0.1,
+          "delay_samples": 1,
+          "replay": 1e-12
+        }
+      },
+      "provenance": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+        "numpy": "2.3.5",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "cpp_executable": "D:\\Universidad\\Tesis\\Codex\\Referencia ASNI AFC Patel\\build\\bin\\Release\\patel_compare.exe",
+        "cpp_sha256": "ab9bef856d90b24df183fccec4e59daa45c135828114d2a63a3ce473d6b250f8",
+        "source_sha256": {
+          "Referencia ASNI AFC Patel\\referencia\\campaign.py": "cd8522cf79b51e7ec1b93742b83ce142bf8a8d7a01c831a3948bcc81f5de2eee",
+          "Referencia ASNI AFC Patel\\referencia\\fixtures.py": "a69e4be799ffad670fcfb83f340c63122973454c74f57023ec92e62dc02daea5",
+          "Referencia ASNI AFC Patel\\referencia\\oracle.py": "2d56b8153b62eae1e6eb5f14ba3d8b41d57a03374030649f67f29616d2ad5e33",
+          "Referencia ASNI AFC Patel\\referencia\\storage.py": "1823692ed3756993da7a5da235ba06dd93bed9a4f7b93b6760829069bf45cf13",
+          "Referencia ASNI AFC Patel\\referencia\\__init__.py": "ebbd39bbf2eb2893c425838e622fd2eeee39e27ba41aacfd37ae38989ed1a1a1",
+          "Referencia ASNI AFC Patel\\referencia\\__main__.py": "fce6aec012d252b628c0f33f1f0908d4db418f17772aedea4989cb6c697a8f56",
+          "Referencia ASNI AFC Patel\\comparador_cpp\\build_info.h.in": "f5c92fdd5845c4408f7e2af43f473fd4032cabbab03a5ffc07dec68042aeabe0",
+          "Referencia ASNI AFC Patel\\comparador_cpp\\CMakeLists.txt": "92e94d3bd81694391b06f890f4a9d88aa0abf292637fbfb3ba699cb6ebfefb65",
+          "Referencia ASNI AFC Patel\\comparador_cpp\\main.cpp": "5ab7aefba19b0f7b1c59d9703f6a603d278c0dca9660574b57dd557ab9e13bd4",
+          "RealtimeFeedbackEngine\\Source\\Processors\\PatelEstimator.cpp": "359dff702c9109cb7475ffdd39e025a075eaecf96d7af5dbac38e43c83932c41",
+          "RealtimeFeedbackEngine\\Source\\Processors\\PatelEstimator.h": "d624ee969bd633ff842783fba384c02ac54f32fd62182d56d5fd2a4515332fa4"
+        },
+        "timings": "offline; not audio callback latency"
+      },
+      "passed": true,
+      "case_count": 50,
+      "math_check_count": 25
+    },
+    "48000": {
+      "schema_version": 1,
+      "run_id": "20260924T192139.914214Z_29716978",
+      "status": "completed",
+      "config": {
+        "schema_version": 1,
+        "sample_rate": 48000,
+        "seeds": [
+          1729,
+          2718,
+          3141,
+          5772,
+          8119
+        ],
+        "conditions": [
+          "simple",
+          "reflections",
+          "reverberant",
+          "weak_onset",
+          "noise40",
+          "noise20",
+          "no_return",
+          "clipped",
+          "nonfinite",
+          "short160"
+        ],
+        "maximum_filter_length": 2048,
+        "maximum_delay_samples": 4800,
+        "probe_seconds": 1.0,
+        "validation_seconds": 0.5,
+        "pre_onset_margin_samples": 32,
+        "rounding": "nearest integer, ties to even",
+        "tolerances": {
+          "oracle": 1e-10,
+          "cpp_solver": 1e-08,
+          "identification": 0.001,
+          "noisy_prediction_db": 0.1,
+          "delay_samples": 1,
+          "replay": 1e-12
+        }
+      },
+      "provenance": {
+        "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+        "numpy": "2.3.5",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "cpp_executable": "D:\\Universidad\\Tesis\\Codex\\Referencia ASNI AFC Patel\\build\\bin\\Release\\patel_compare.exe",
+        "cpp_sha256": "ab9bef856d90b24df183fccec4e59daa45c135828114d2a63a3ce473d6b250f8",
+        "source_sha256": {
+          "Referencia ASNI AFC Patel\\referencia\\campaign.py": "cd8522cf79b51e7ec1b93742b83ce142bf8a8d7a01c831a3948bcc81f5de2eee",
+          "Referencia ASNI AFC Patel\\referencia\\fixtures.py": "a69e4be799ffad670fcfb83f340c63122973454c74f57023ec92e62dc02daea5",
+          "Referencia ASNI AFC Patel\\referencia\\oracle.py": "2d56b8153b62eae1e6eb5f14ba3d8b41d57a03374030649f67f29616d2ad5e33",
+          "Referencia ASNI AFC Patel\\referencia\\storage.py": "1823692ed3756993da7a5da235ba06dd93bed9a4f7b93b6760829069bf45cf13",
+          "Referencia ASNI AFC Patel\\referencia\\__init__.py": "ebbd39bbf2eb2893c425838e622fd2eeee39e27ba41aacfd37ae38989ed1a1a1",
+          "Referencia ASNI AFC Patel\\referencia\\__main__.py": "fce6aec012d252b628c0f33f1f0908d4db418f17772aedea4989cb6c697a8f56",
+          "Referencia ASNI AFC Patel\\comparador_cpp\\build_info.h.in": "f5c92fdd5845c4408f7e2af43f473fd4032cabbab03a5ffc07dec68042aeabe0",
+          "Referencia ASNI AFC Patel\\comparador_cpp\\CMakeLists.txt": "92e94d3bd81694391b06f890f4a9d88aa0abf292637fbfb3ba699cb6ebfefb65",
+          "Referencia ASNI AFC Patel\\comparador_cpp\\main.cpp": "5ab7aefba19b0f7b1c59d9703f6a603d278c0dca9660574b57dd557ab9e13bd4",
+          "RealtimeFeedbackEngine\\Source\\Processors\\PatelEstimator.cpp": "359dff702c9109cb7475ffdd39e025a075eaecf96d7af5dbac38e43c83932c41",
+          "RealtimeFeedbackEngine\\Source\\Processors\\PatelEstimator.h": "d624ee969bd633ff842783fba384c02ac54f32fd62182d56d5fd2a4515332fa4"
+        },
+        "timings": "offline; not audio callback latency"
+      },
+      "passed": true,
+      "case_count": 50,
+      "math_check_count": 25
+    }
+  },
+  "common_band_hz": [
+    100,
+    7000
+  ],
+  "cross_rate_comparison": "descriptive, not a live-audio equivalence test"
+}

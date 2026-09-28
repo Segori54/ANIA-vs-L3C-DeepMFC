@@ -1,0 +1,19 @@
+{
+  "sample_rate": 48000,
+  "duration_seconds": 2.0,
+  "seed": 20260826,
+  "block_sizes": [64, 128, 256],
+  "gain_margin_db": 3.0,
+  "snr_db": 20.0,
+  "signal_kind": "voice_like",
+  "path": {"length": 256, "direct_delay": 48, "decay": 0.025},
+  "patel": {
+    "probe_duration_ms": 200,
+    "probe_level_dbfs": -30.0,
+    "filter_length": 256,
+    "regularisation": 0.000001,
+    "reactive": true,
+    "path_change_seconds": 1.0
+  },
+  "output_dir": "outputs/smoke"
+}

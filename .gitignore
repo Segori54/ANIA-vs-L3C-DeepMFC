@@ -6,6 +6,12 @@
 
 # Local build archive and runtime logs
 /local-builds/
+/outputs/
+/output/
+/tmp/
+**/node_modules/
+/presentation-package/rendered/
+/presentation-package/*.inspect.ndjson
 /*-startup.txt
 /*-startup-error.txt
 /v*-long-stdout.txt

@@ -1,0 +1,21 @@
+{
+  "base": {
+    "sample_rate": 48000,
+    "duration_seconds": 5.0,
+    "seed": 20260826,
+    "block_sizes": [64, 128, 256],
+    "gain_margin_db": 3.0,
+    "snr_db": 20.0,
+    "path": {"length": 1024, "direct_delay": 48, "decay": 0.025},
+    "patel": {"reactive": true, "path_change_seconds": 2.5},
+    "output_dir": "outputs/patel-sweep"
+  },
+  "grid": {
+    "seed": [11, 23, 47],
+    "gain_margin_db": [0.5, 1.5, 2.5, 4.5],
+    "snr_db": [null, 20.0, 10.0],
+    "patel.probe_duration_ms": [50, 100, 200, 400],
+    "patel.probe_level_dbfs": [-40.0, -30.0, -20.0],
+    "patel.filter_length": [128, 256, 512, 1024]
+  }
+}

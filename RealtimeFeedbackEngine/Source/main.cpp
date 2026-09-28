@@ -20,10 +20,19 @@ public:
     const juce::String getApplicationVersion() override { return "0.1.0"; }
     bool moreThanOneInstanceAllowed() override { return true; }
 
-    void initialise(const juce::String&) override
+    void initialise(const juce::String& commandLine) override
     {
         logger = std::make_unique<ConsoleLogger>();
         juce::Logger::setCurrentLogger(logger.get());
+        if (commandLine.contains("--ui-check"))
+        {
+            MainComponent component;
+            const auto passed = component.verifyLayout();
+            std::cout << "Responsive layout checks: " << (passed ? "PASS" : "FAIL") << std::endl;
+            setApplicationReturnValue(passed ? 0 : 1);
+            quit();
+            return;
+        }
         mainWindow = std::make_unique<MainWindow>(getApplicationName());
     }
 
@@ -48,7 +57,12 @@ private:
         {
             setUsingNativeTitleBar(true);
             setContentOwned(new MainComponent(), true);
-            centreWithSize(getWidth(), getHeight());
+            setResizable(true, false);
+            const auto* display = juce::Desktop::getInstance().getDisplays().getPrimaryDisplay();
+            const auto area = display != nullptr ? display->userArea : juce::Rectangle<int>(0, 0, 1280, 800);
+            setResizeLimits(std::min(760, area.getWidth()), std::min(450, area.getHeight()), 10000, 10000);
+            centreWithSize(std::min(1180, juce::roundToInt(area.getWidth() * 0.9)),
+                           std::min(720, juce::roundToInt(area.getHeight() * 0.9)));
             setVisible(true);
         }
 

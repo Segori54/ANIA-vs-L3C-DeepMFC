@@ -1,0 +1,19 @@
+{
+  "sample_rate": 48000,
+  "duration_seconds": 8.0,
+  "seed": 20260826,
+  "block_sizes": [64, 128, 256],
+  "gain_margin_db": 1.5,
+  "snr_db": 20.0,
+  "signal_kind": "voice_like",
+  "path": {"length": 512, "direct_delay": 64, "decay": 0.018},
+  "patel": {
+    "probe_duration_ms": 100,
+    "probe_level_dbfs": -30.0,
+    "filter_length": 128,
+    "regularisation": 0.00001,
+    "reactive": true,
+    "path_change_seconds": 4.0
+  },
+  "output_dir": "outputs/presentation-demo/raw"
+}
