@@ -1,0 +1,64 @@
+\section{Metodología}
+\subsection{Enfoque general y etapas de validación}
+Se realizará una investigación experimental y comparativa con tres niveles de evidencia: simulación con señales de referencia conocidas, verificación numérica de implementaciones y medición física en lazo cerrado. Los resultados se reportarán por separado. La simulación permitirá controlar el camino y conocer el retorno verdadero; los ensayos físicos permitirán comprobar el comportamiento del sistema completo.
+
+\subsection{Banco experimental y condiciones comunes}
+Se utilizará un sistema mono compuesto por micrófono, interfaz de audio, computador y parlante de realimentación. Una fuente independiente reproducirá la voz de prueba cuando se necesite repetir exactamente el estímulo. Se registrarán modelo de equipos, ubicación, orientación, distancias, sala, ganancias analógicas y digitales, frecuencia y tamaño de bloque efectivos, controlador y versión del software.
+
+Se trabajará a 16 y 48 kHz cuando el hardware y las implementaciones lo permitan. La comparación principal se efectuará a una tasa común validada para ambos métodos; las extensiones se reportarán aparte. Se ensayarán bloques de 64, 128 y 256 muestras. Se documentará cualquier agrupación en tramas o conversión de tasa, con su costo y retardo, sin asumir que ambos métodos requieren el mismo tamaño interno de trama.
+
+La voz será la señal principal de evaluación. Ruido y música se utilizarán como pruebas complementarias de excitación, comportamiento tonal o generalización, sin extrapolar a música los resultados de métricas diseñadas para voz.
+
+\propuestafigura{Montaje experimental}{Tomar una fotografía del montaje y elaborar una planta a escala aproximada con distancias y orientaciones. Distinguir la fuente de voz del parlante de realimentación. Incorporar una captura del banco JUCE como evidencia de instrumentación, con fecha y configuración visibles.}
+
+\subsection{Implementación y verificación de ANIA}
+Se utilizará la implementación C++ existente como punto de partida y se contrastará con una referencia independiente en Python de doble precisión. Se comprobarán correlaciones, solución del sistema, retardo, longitud efectiva del FIR y señal cancelada. Se incluirán caminos conocidos, señales de baja energía, estimaciones rechazadas y cambios del modelo durante la captura.
+
+En los ensayos iniciales la calibración será manual y se aplicará una segunda sonda para validar el filtro antes de activarlo. Se medirán duración, nivel e interrupción asociada a la calibración. Frente a cambios del camino se distinguirán dos condiciones: filtro sin actualizar y recalibración controlada. Si se incorpora detección automática, se medirán falsas alarmas, omisiones y demora de detección antes de integrarla con la reinyección de ruido. Mientras esto no se complete, la variante se identificará como ANIA con calibración manual.
+
+\subsection{Datos, entrenamiento y verificación de L3C-DeepMFC}
+Se elaborará una especificación de reproducción que relacione cada componente publicado con su implementación: representación de entrada y objetivo, módulos recurrentes, estados, ventanas, reconstrucción, funciones de pérdida y ajuste fino en lazo cerrado. Se verificará la ejecución secuencial y se contabilizará cualquier anticipación temporal. Las decisiones que la publicación no permita resolver se documentarán como supuestos de reproducción.
+
+Se seleccionarán corpus de voz y respuestas al impulso con permisos de uso adecuados y diversidad de hablantes y caminos acústicos. Se congelarán particiones de entrenamiento, validación y prueba sin compartir identidades de hablantes ni versiones del mismo registro entre particiones. También se reservarán caminos o salas para evaluar generalización. Las mezclas derivadas de una misma señal conservarán su partición de origen.
+
+La selección de hiperparámetros y del modelo se realizará únicamente con entrenamiento y validación. Las grabaciones propias se reservarán para evaluación externa. Se registrarán semillas, versiones, configuración, costo de entrenamiento y criterio de selección. Se compararán las salidas de referencia y de inferencia integrada, incluyendo continuidad de estados entre bloques, inicio y final de sesión y diferencias numéricas tras la exportación.
+
+Si la reproducción fiel no pudiera completarse, se informará el alcance logrado y se acordará una reformulación del objetivo antes de presentar una variante como sustituto. La existencia de código exploratorio no se considerará evidencia de entrenamiento ni de desempeño del método objetivo.
+
+\subsection{Diseño experimental}
+Se compararán tres condiciones principales: sin cancelación, ANIA y L3C-DeepMFC. Un esquema híbrido de cancelación clásica y supresión residual podrá explorarse una vez completada la comparación principal y se identificará como condición adicional.
+
+El protocolo se organizará en caminos estacionarios y caminos con cambio controlado. Se propone comenzar con tres geometrías del conjunto micrófono--parlante y un cambio reproducible por desplazamiento u objeto cercano. Un piloto permitirá fijar distancias, niveles y tiempos. Para cada configuración se propone un mínimo de cinco repeticiones independientes, reiniciando el estado del sistema y equilibrando el orden de los métodos. Este número se revisará según la variabilidad del piloto; no constituye un cálculo de potencia estadística.
+
+Los ensayos se emparejarán por estímulo, geometría y configuración del dispositivo. Se evaluará calidad a una ganancia común y también cerca del límite estable de cada método, identificando ambos análisis. Cuando las latencias difieran, se informará el resultado con latencia nativa y, si es viable, una condición con retardo total equiparado. No se interpretará como ventaja algorítmica una diferencia debida únicamente al retardo del lazo.
+
+\subsection{Estabilidad y ganancia adicional}
+La ganancia máxima estable (MSG) se definirá operacionalmente como la mayor ganancia que satisfaga el criterio de estabilidad durante una ventana de observación fija. Se propone un barrido de 1 dB con observación de 10 s por escalón, seguido de un ensayo sostenido en el nivel seleccionado. El piloto establecerá el umbral de persistencia tonal y crecimiento de energía para detectar inestabilidad; estos parámetros se fijarán antes de la campaña definitiva.
+
+Se registrarán por separado acople, saturación y actuación del limitador. Si una protección o un límite del equipo impide alcanzar el umbral, la medición se reportará como acotada, no como una MSG exacta. La ganancia adicional estable será
+\begin{equation}
+\mathrm{ASG}=\mathrm{MSG}_{\text{método}}-\mathrm{MSG}_{\text{sin cancelación}},
+\end{equation}
+con ambas ganancias expresadas en dB y medidas bajo las mismas condiciones. Se registrará además el nivel de la señal útil para detectar estabilidad obtenida a costa de atenuación excesiva. Los ensayos usarán límites de salida y detención definidos durante el piloto.
+
+\subsection{Calidad, error y robustez}
+En simulación se calculará error de identificación cuando el camino verdadero sea conocido, y calidad de reconstrucción mediante SI-SDR\cite{leroux2019} y error respecto de la señal deseada alineada. Se conservará también una medida sensible al nivel, pues SI-SDR puede ocultar cambios de ganancia. El protocolo de alineamiento será común y no se utilizará para eliminar diferencias de latencia del reporte temporal.
+
+Para voz se propone utilizar STOI\cite{taal2011} o ESTOI como indicadores de inteligibilidad y una métrica de calidad como PESQ o ViSQOL, según compatibilidad de tasa, disponibilidad e implementación validada. Se registrarán versión y modo de cada métrica. Las evaluaciones físicas con referencia requerirán una captura de la señal deseada en el micrófono con el lazo abierto y condiciones reproducibles; si esta referencia no es válida, no se presentarán esas puntuaciones como mediciones objetivas de calidad del montaje.
+
+La reducción energética del retorno se calculará únicamente donde este pueda aislarse, por ejemplo en simulación o en ensayos de sonda. No se utilizará una razón entre entrada y salida del micrófono como ERLE cuando contenga voz deseada no separable. Ante cambios del camino se medirán pérdida de margen estable, degradación de calidad, demora de recuperación y tiempo dedicado a recalibración. Se registrarán asimismo fallos de recuperación.
+
+\subsection{Ejecución en tiempo real y plataforma embebida}
+Se medirán tiempos por bloque, percentiles 50, 95 y 99, máximo observado, incumplimientos del plazo, pérdidas de audio y uso de memoria y CPU. Se propone una prueba sostenida de al menos 10 minutos por configuración final, indicando carga del sistema y número de bloques. La latencia de entrada a salida se medirá mediante un procedimiento de retorno de señal; la propagación acústica se informará separadamente si se incluye en la medición.
+
+La evaluación en Raspberry Pi 4 será posterior a la validación en PC e incluirá el mismo protocolo temporal, temperatura y posibles reducciones de frecuencia. Se documentarán las configuraciones que no puedan ejecutarse de forma sostenida. No se extrapolarán los tiempos del PC como resultados de la plataforma embebida.
+
+\subsection{Análisis y reproducibilidad}
+Se reportarán resultados por método y condición con medidas de dispersión e intervalos de confianza cuando el número de unidades independientes lo permita. Las diferencias se calcularán sobre ensayos emparejados. Para calidad se evitará tratar cada trama como observación independiente; se agrupará por grabación o hablante. Para estabilidad se considerarán las repeticiones y geometrías del montaje. Las conclusiones distinguirán magnitud del efecto, incertidumbre y relevancia práctica.
+
+Cada sesión conservará audios, parámetros efectivos, eventos, modelo utilizado, marcas temporales y verificaciones de integridad. Se fijarán previamente las reglas de exclusión, como captura incompleta o saturación ajena al fenómeno estudiado, y se informará cuántos casos fueron excluidos. Los fallos propios de un método formarán parte de sus resultados. Se publicarán configuraciones y scripts reproducibles, respetando los permisos de los datos de voz.
+
+\section{Alcance y Limitaciones}
+El estudio se centrará en un sistema mono y en voz, con condiciones acústicas controladas y un número acotado de geometrías. No buscará validar una solución para todos los recintos ni establecer desempeño clínico en usuarios de audífonos. La transferencia desde los contextos de las publicaciones al banco de audio en vivo será una cuestión experimental.
+
+Las conclusiones dependerán de la calidad de reproducción de los métodos, de la cobertura del corpus y de las restricciones del hardware. La evaluación embebida se limitará a Raspberry Pi 4. No se comprometerá el desarrollo de arquitecturas neuronales nuevas, arreglos multicanal ni una campaña perceptual con participantes como requisito de esta etapa. El control automático de ANIA y el esquema híbrido serán extensiones condicionadas a la validación de la comparación principal.

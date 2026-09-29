@@ -1,0 +1,31 @@
+\clearpage
+\begin{spacing}{0.9}
+\tableofcontents
+\end{spacing}
+\thispagestyle{empty}
+\clearpage
+\pagestyle{estandar}
+\setcounter{page}{1}
+\justifying
+\section{Introducción}
+La realimentación acústica aparece cuando el sonido emitido por un parlante retorna al micrófono y vuelve a amplificarse. En un sistema de audio en vivo, este lazo puede producir coloración, pérdida de claridad y oscilaciones audibles o \textit{howling}. Su control exige conservar la señal deseada y mantener una ganancia útil, sin introducir retardos incompatibles con la aplicación.
+
+Esta investigación comparará dos estrategias de cancelación de realimentación acústica (\textit{Acoustic Feedback Cancellation}, AFC): el método de identificación mediante inyección breve de ruido de Patel y Panahi\cite{patel2020}, denominado ANIA en este trabajo, y el modelo L3C-DeepMFC propuesto por Hao y colaboradores\cite{hao2025}. La abreviatura ANIA se adopta a partir del título \textit{Adaptive Noise Injection Algorithm}; no se atribuye a los autores como sigla oficial. En antecedentes del proyecto también se ha utilizado ASNI para referirse a la inyección adaptativa de ruido de corta duración.
+
+La comparación se desarrollará mediante simulación, verificación de las implementaciones y ensayos físicos en un lazo micrófono--procesador--parlante. Se estudiarán conjuntamente la ganancia adicional estable, la conservación de la voz, la respuesta ante cambios del camino acústico y el costo de ejecución. El banco experimental en C++/JUCE permitirá aplicar un protocolo común y registrar las señales y condiciones de cada ensayo. Posteriormente se evaluará la viabilidad de ejecución en Raspberry Pi 4.
+
+El proyecto ya dispone de infraestructura y verificaciones preliminares. Estas se presentarán como antecedentes de factibilidad; el objetivo del anteproyecto será definir la comparación y las mediciones que se realizarán. No se anticipará la superioridad de ninguno de los métodos.
+
+\clearpage
+\section{Planteamiento del Problema}
+Una solución de AFC debe reducir el retorno acústico sin confundirlo con la señal que se desea amplificar. En un lazo cerrado, ambas señales están relacionadas, lo que dificulta identificar el camino de realimentación. Además, el desplazamiento del micrófono, la orientación del parlante o la presencia de objetos pueden modificar dicho camino durante la operación.
+
+La identificación con una señal de prueba y la supresión mediante aprendizaje profundo plantean exigencias diferentes. En el primer caso, se deberá considerar la duración y audibilidad de la calibración y la pérdida de eficacia cuando cambia el entorno. En el segundo, será necesario examinar la representatividad de los datos, la ejecución secuencial del modelo y el retardo efectivo de análisis y reconstrucción. Una mejora obtenida sobre archivos procesados fuera de línea no será suficiente para acreditar funcionamiento en un lazo acústico real.
+
+El problema específico de esta tesis será determinar qué compromiso ofrecen ANIA y L3C-DeepMFC entre estabilidad, calidad y recursos bajo condiciones experimentales comparables. Los trabajos seleccionados se desarrollan en contextos de aplicación distintos; por ello, sus resultados publicados no se considerarán directamente transferibles al montaje de esta investigación. Se comprobará su desempeño con señales, caminos acústicos y presupuestos temporales definidos para el banco experimental.
+
+\section{Pregunta de investigación}
+¿Qué ventajas y limitaciones presentan ANIA y L3C-DeepMFC para controlar la realimentación acústica de un sistema de audio en vivo, al comparar ganancia adicional estable, calidad de voz, robustez ante cambios del camino acústico y costo computacional bajo restricciones de latencia?
+
+\subsection{Hipótesis de trabajo}
+Se plantea que la conveniencia de cada método dependerá del estado del camino acústico y del presupuesto de procesamiento. ANIA podría ofrecer un costo de operación favorable tras identificar un camino aproximadamente estacionario, mientras que L3C-DeepMFC podría conservar mejor la señal en algunas condiciones de realimentación si sus datos de entrenamiento representan dichas condiciones. Esta posible ventaja deberá contrastarse con su latencia, costo y generalización. La hipótesis se evaluará por condición experimental y podrá rechazarse si los datos no muestran estos comportamientos.

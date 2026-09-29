@@ -1,0 +1,81 @@
+\documentclass[12pt]{article}
+\usepackage{mathptmx}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{geometry}
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{colortbl}
+\usepackage{multirow}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{amsmath}
+% subcaption conserva el soporte de subfiguras sin conflicto con subfig.
+\usepackage{pdflscape}
+\usepackage{lscape}
+\usepackage{pdfpages}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{tocloft}
+\usepackage{ragged2e}
+
+
+\renewcommand{\tablename}{Tabla}
+\renewcommand{\labelitemi}{\(\bullet\)}
+
+\setlength{\parskip}{1em}%Distancia entre párrafos.
+\renewcommand{\baselinestretch}{1.0}% Espacio entre línea y línea o interlineado.
+
+
+
+
+
+\geometry{margin= 1in}
+
+\setlength{\parindent}{24pt}
+\clubpenalty=10000
+\widowpenalty=10000
+
+\hypersetup{hidelinks,hypertexnames=false,pdftitle={Anteproyecto de tesis - Matías Arancibia},pdfauthor={Matías Ignacio Arancibia Villanueva}}
+\newif\ifpropuestasfiguras
+\propuestasfigurastrue % Cambiar a false para ocultar sugerencias editoriales.
+\newcommand{\propuestafigura}[2]{\ifpropuestasfiguras
+\par\noindent\fcolorbox{gray}{gray!6}{\parbox{0.94\linewidth}{\small\textbf{Propuesta de figura: #1.} #2}}\par
+\fi}
+\begin{document}
+
+\fancypagestyle{estandar}
+{
+    \fancyhf{}
+    \setlength{\headheight}{30pt}
+    \fancyhead[R]{\fontsize{9}{9}\selectfont Universidad Austral de Chile\\28 de septiembre de 2026 \\[-1mm]}
+    \fancyhead[L]{\fontsize{13}{13}\selectfont Página \thepage \\[-1mm]}
+    \lfoot{} \cfoot{} \rfoot{}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+\include{Texs/01 Portada}
+\include{Texs/02 IntroProblemaHipPregunta}
+\input{Texs/03 ObjJusti}
+\input{Texs/04 Marco teorico}
+\input{Texs/05 MetoAlcanLimit}
+\input{Texs/06 PlanGantt}
+\input{Texs/07 Resultados}
+\input{Texs/08 Discusion}
+\input{Texs/09 Conclusion}
+\include{Texs/11 Fuentes}
+
+\end{document}

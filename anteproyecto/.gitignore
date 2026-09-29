@@ -1,0 +1,5 @@
+pdf/*.log
+pdf/*.synctex.gz
+pdf/*.aux
+pdf/*.toc
+pdf/*.out

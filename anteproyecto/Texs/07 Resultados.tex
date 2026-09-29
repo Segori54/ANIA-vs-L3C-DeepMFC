@@ -1,0 +1,16 @@
+\section{Resultados esperados y avances preliminares}
+\subsection{Resultados esperados}
+Se espera obtener una caracterización comparativa de las regiones de operación de ambos métodos: ganancia utilizable, calidad conservada y costo de ejecución. Se elaborarán tablas de ganancia adicional estable, calidad de voz y respuesta a cambios del camino, junto con curvas de latencia y tiempo de procesamiento. Se identificarán las condiciones en que cada método resulte viable en PC y en Raspberry Pi 4.
+
+Los productos incluirán las implementaciones documentadas, la especificación de reproducción neuronal, el protocolo, las configuraciones de los ensayos y los scripts de análisis. No se fija como resultado esperado que el aprendizaje profundo supere al método clásico; se buscará evidencia que permita aceptar o rechazar esa posibilidad en cada condición.
+
+\subsection{Avances disponibles al 28 de septiembre de 2026}
+Como antecedente de factibilidad, el proyecto dispone de un banco mono C++/JUCE con ganancia, sondas, estimación del camino, validación independiente y cancelación FIR con calibración manual. También existe un laboratorio Python para simulación y herramientas de entrenamiento y exportación de candidatos neuronales exploratorios.
+
+Los registros internos del proyecto informan campañas sintéticas aprobadas de 50 casos y 25 pruebas matemáticas por frecuencia, a 16 y 48 kHz. La verificación de integración más reciente registra cinco pruebas C++ y 17 Python aprobadas, además de 12 sesiones sintéticas completas auditadas y dos sesiones incompletas correctamente rechazadas\cite{estado2026}. Estos antecedentes corresponden a verificaciones del software y a equivalencia numérica dentro de los casos ensayados.
+
+Permanecen pendientes la campaña acústica física, la reproducción fiel y entrenamiento definitivo de L3C-DeepMFC, la integración neuronal y las mediciones sostenidas en Raspberry Pi 4. Tampoco se ha completado el control automático descrito para ANIA. Por tanto, los avances no constituyen una comparación final ni acreditan todavía ganancia acústica adicional, calidad perceptual o latencia física.
+
+\propuestafigura{Evidencia preliminar de identificación}{Generar una gráfica con camino sintético conocido, estimación Python y estimación C++, acompañada de error y configuración. Identificarla explícitamente como validación numérica. Más adelante, agregar una respuesta al impulso medida, separada del ejemplo sintético.}
+
+\propuestafigura{Resultados de la campaña futura}{Preparar gráficos de ASG por geometría, calidad frente a ganancia y percentil 99 de procesamiento frente al plazo del bloque. Para cambios de camino, usar una línea temporal con cambio, degradación y recuperación. No llenar estos gráficos con valores ilustrativos que puedan confundirse con resultados.}

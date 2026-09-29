@@ -1,0 +1,41 @@
+\section{Marco Teórico}
+\subsection{Lazo de realimentación y modelado acústico}
+Para el modelo discreto se considerará la señal capturada $d[n]$, la señal deseada en el micrófono $s[n]$, el ruido $v[n]$ y la señal enviada al parlante $u[n]$. Si $h[k]$ representa un camino aproximadamente lineal e invariante durante un intervalo, se tendrá
+\begin{equation}
+d[n]=s[n]+\sum_{k=0}^{L_h-1}h[k]u[n-k]+v[n].
+\label{eq:lazo}
+\end{equation}
+El modelo incluirá el sonido directo, las reflexiones y los retardos del camino definido entre los puntos de referencia. Se documentará dónde se ubican estos puntos para evitar contabilizar dos veces el retardo de la interfaz o del procesamiento. Cuando cambie el entorno se representará el camino como $h[n,k]$.
+
+En una representación lineal simplificada sin cancelación, si $G(z)$ es el camino de avance, la transferencia entre la señal deseada y la señal capturada contiene el denominador $1-G(z)H(z)$. La estabilidad depende de los polos del lazo cerrado. La condición $|G(e^{j\omega})H(e^{j\omega})|<1$ en todas las frecuencias constituye una condición suficiente bajo las hipótesis usuales de estabilidad de los bloques; el módulo por sí solo no describe todos los casos. En el montaje real se utilizará un criterio operacional de estabilidad, especialmente para métodos no lineales.
+
+\propuestafigura{Lazo acústico y puntos de medición}{Elaborar un diagrama propio con $s[n]$, $d[n]$, $u[n]$, $h[n,k]$, procesador, ganancia y retardos. Marcar la referencia utilizada por el cancelador y los canales exportados. Ubicarlo después de la ecuación~\ref{eq:lazo}.}
+
+\subsection{Identificación y cancelación mediante filtros}
+Un cancelador por identificación estimará el retorno mediante $\widehat h[k]$ y lo sustraerá de la entrada:
+\begin{equation}
+e[n]=d[n]-\sum_{k=0}^{L_{\widehat h}-1}\widehat h[k]u[n-k].
+\end{equation}
+En el caso ideal, el residuo contendrá la señal deseada y el ruido. Los errores de modelado y los cambios del camino dejarán una componente de realimentación residual. La longitud del filtro, la estimación del retardo y el condicionamiento de la identificación serán variables de diseño relevantes.
+
+Los algoritmos LMS y NLMS constituyen antecedentes de adaptación continua. En esta tesis no se utilizará NLMS como denominación del método de Patel: la versión implementada identifica un filtro mediante una sonda y mantiene sus coeficientes durante la cancelación. Esta diferencia será explícita al describir las variantes experimentales.
+
+\subsection{Método ANIA}
+Patel y Panahi proponen identificar el camino acústico mediante una inyección breve de ruido blanco y utilizar el filtro obtenido para cancelar el retorno. Su procedimiento relaciona autocorrelaciones de la sonda y correlaciones cruzadas con la captura. El artículo también contempla detectar el inicio del acople para actualizar el modelo\cite{patel2020}.
+
+En la implementación de esta tesis se verificarán por separado estimación, validación del filtro y operación continua. Se documentarán la regularización numérica, el retardo separado y la validación con una segunda sonda como decisiones de implementación. La modalidad manual servirá para estudiar la cancelación en condiciones controladas; cualquier modalidad automática requerirá validar previamente el detector y se informará como una variante diferenciada.
+
+\subsection{Aprendizaje profundo y L3C-DeepMFC}
+L3C-DeepMFC se orienta a estimar voz libre de realimentación mediante procesamiento espectral complejo. Combina modelado recurrente de banda completa y subbandas, reconstrucción por solapamiento y suma de baja latencia, y ajuste fino en lazo cerrado\cite{hao2025}. La arquitectura y el procedimiento de entrenamiento constituirán la referencia para la implementación neuronal de esta tesis.
+
+Se distinguirá entre reproducir el método publicado y desarrollar una variante inspirada en él. Los candidatos MLP, GRU y la red compacta disponibles en el laboratorio del proyecto servirán como herramientas exploratorias; no se presentarán como una reproducción validada de L3C-DeepMFC. Cualquier modificación necesaria para el montaje o la tasa de muestreo se describirá y evaluará explícitamente.
+
+\propuestafigura{Comparación de los dos métodos}{Dibujar dos diagramas propios: calibración y FIR para ANIA; análisis, red recurrente y síntesis para L3C-DeepMFC. Investigar las figuras de las referencias~\cite{patel2020,hao2025} y citar la adaptación. Incluir una línea temporal que muestre las diferencias entre calibración, operación e inferencia.}
+
+\subsection{Tiempo real y latencia}
+Para un bloque de $B$ muestras a frecuencia $f_s$, el intervalo disponible es $T_B=B/f_s$. Se distinguirán el tiempo de ejecución de cada llamada, el retardo algorítmico debido a ventanas o muestras futuras y la latencia de entrada a salida del dispositivo. Cumplir el plazo de un bloque no implica que la latencia total sea igual a $T_B$.
+
+En el modelo neuronal se contabilizarán acumulación de tramas, salto, reconstrucción, adaptación entre tamaños de bloque y cualquier remuestreo. En ambos métodos se medirán percentiles y máximos observados de tiempo de procesamiento, además del número de incumplimientos. Las mediciones se realizarán sobre sesiones sostenidas y con el dispositivo de destino.
+
+\subsection{Posicionamiento de la investigación}
+Los dos antecedentes seleccionados motivan estudiar estrategias de identificación y de supresión aprendida dentro de un mismo montaje. La tesis no buscará establecer una clasificación universal entre familias de algoritmos. Su alcance será explicar el comportamiento de dos métodos concretos y de las variantes identificadas, bajo un protocolo compartido de estabilidad, calidad y ejecución.

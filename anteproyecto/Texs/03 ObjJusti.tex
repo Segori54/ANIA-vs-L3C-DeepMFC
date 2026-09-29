@@ -1,0 +1,20 @@
+\section{Objetivos}
+\subsection{Objetivo general}
+Comparar experimentalmente ANIA y L3C-DeepMFC para la cancelación de realimentación acústica en tiempo real, considerando ganancia adicional estable, calidad de voz, robustez y costo computacional bajo condiciones de latencia controlada.
+
+\subsection{Objetivos específicos}
+\begin{enumerate}
+\item Definir un modelo del lazo acústico y un protocolo reproducible que especifique señales, caminos, ganancias, frecuencias de muestreo y condiciones de cambio del entorno.
+\item Implementar y verificar la identificación y cancelación de ANIA, distinguiendo la calibración manual del control automático descrito en la publicación original.
+\item Implementar, entrenar y verificar L3C-DeepMFC a partir de su descripción publicada, con separación entre entrenamiento, validación y evaluación externa.
+\item Integrar ambos métodos en un banco común de procesamiento continuo y comprobar la equivalencia entre las versiones de referencia y las versiones utilizadas en tiempo real.
+\item Medir estabilidad, calidad de voz y recuperación ante cambios del camino mediante ensayos emparejados, con incertidumbre y condiciones de validez explícitas.
+\item Cuantificar latencia, tiempos de procesamiento y uso de recursos en PC, y evaluar la factibilidad de ejecución sostenida en Raspberry Pi 4.
+\end{enumerate}
+
+\section{Justificación}
+La contribución esperada será una comparación reproducible que vincule el desempeño acústico con las restricciones de implementación. La ausencia de acople, por sí sola, no acreditará una solución satisfactoria: un método podría evitarlo atenuando excesivamente la señal útil. De manera similar, una mejora de calidad fuera de línea podría perder utilidad si requiere un retardo excesivo o incumple los plazos de procesamiento.
+
+El uso de un banco común permitirá documentar estos compromisos y separar errores del algoritmo de limitaciones del dispositivo o del controlador de audio. La verificación numérica previa reducirá el riesgo de atribuir a un método diferencias causadas por una implementación incorrecta. La evaluación externa con grabaciones propias permitirá examinar condiciones distintas de las utilizadas para ajustar parámetros.
+
+El trabajo aportará implementaciones documentadas, un protocolo de medición y evidencia que permita seleccionar un método según la aplicación. El aporte seguirá siendo válido si el modelo neuronal no supera al método clásico o si no resulta viable en la plataforma embebida, siempre que las conclusiones se sustenten en mediciones comparables.
