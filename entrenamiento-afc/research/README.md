@@ -1,5 +1,11 @@
 # AFC Research Lab
 
+## Proyecto de entrenamiento por fases
+
+Ver [TRAINING.md](TRAINING.md) para preparar Windows/Linux, comprobar entrenamiento
+y reanudación en GPU, auditar originales de voz/canto y generar pares causales.
+Los ensayos GRU de infraestructura no son una implementación de L3C-DeepMFC.
+
 ## Papel dentro de la tesis y estado
 
 Este laboratorio prepara la comparación ANIA frente a L3C-DeepMFC del

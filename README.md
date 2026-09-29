@@ -55,7 +55,7 @@ certifican latencia acústica, calidad perceptual ni ausencia de fallos del hard
 ## Organización y evidencia
 
 - [Estado y próximos hitos](IMPLEMENTATION_STATUS.md): progreso y criterios de cierre.
-- [Laboratorio de investigación](research/README.md): simulación, métricas, particiones y candidatos neuronales.
+- [Proyecto de entrenamiento AFC](entrenamiento-afc/README.md): GUI, selección de voces, laboratorio, entrenamiento y resultados.
 - [Referencia ANIA de Patel](Referencia%20ASNI%20AFC%20Patel/README.md): oráculo independiente, campañas y auditoría.
 - [Banco experimental](RealtimeFeedbackEngine/README.md): construcción y operación del Engine.
 - [Primera sesión física](RealtimeFeedbackEngine/docs/CAPTURA_SESIONES.md): protocolo y límites.

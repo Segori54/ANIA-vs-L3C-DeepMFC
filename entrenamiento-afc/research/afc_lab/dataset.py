@@ -3,18 +3,21 @@ from __future__ import annotations
 import hashlib
 import json
 from pathlib import Path
-import wave
 import numpy as np
 
 
 def read_mono_wav(path: str | Path, expected_sample_rate: int = 48_000) -> np.ndarray:
-    with wave.open(str(path), "rb") as stream:
-        if stream.getframerate() != expected_sample_rate:
+    # libsndfile supports native PCM24 and FLAC without an intermediate PCM16 file.
+    import soundfile as sf
+    with sf.SoundFile(path) as stream:
+        if stream.samplerate != expected_sample_rate:
             raise ValueError(f"{path}: expected {expected_sample_rate} Hz")
-        if stream.getnchannels() != 1 or stream.getsampwidth() != 2:
-            raise ValueError(f"{path}: expected mono PCM16 WAV")
-        samples = np.frombuffer(stream.readframes(stream.getnframes()), dtype="<i2")
-    return samples.astype(np.float32) / 32768.0
+        if stream.channels != 1:
+            raise ValueError(f"{path}: expected mono audio; select a channel explicitly")
+        samples = stream.read(dtype="float32")
+    if not np.isfinite(samples).all():
+        raise ValueError(f"{path}: non-finite audio")
+    return samples
 
 
 def deterministic_group_split(

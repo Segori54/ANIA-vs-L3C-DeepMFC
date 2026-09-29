@@ -19,5 +19,12 @@
 
 # Legacy Python environments and caches
 /.venv/
+/data/
+/research/*.egg-info/
+/entrenamiento-afc/data/
+/entrenamiento-afc/outputs/
+/entrenamiento-afc/cache/
+/entrenamiento-afc/.venv/
+/entrenamiento-afc/research/*.egg-info/
 /**/__pycache__/
 *.py[cod]

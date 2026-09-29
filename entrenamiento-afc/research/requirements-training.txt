@@ -1,0 +1,8 @@
+# Install torch separately from the official CUDA index (see TRAINING.md).
+# Keep optional perceptual metrics out of the training bootstrap.
+numpy>=2.2,<3
+soundfile>=0.13,<0.14
+sounddevice>=0.5,<0.6
+scipy>=1.15,<2
+onnx>=1.17,<2
+onnxruntime>=1.20,<2
